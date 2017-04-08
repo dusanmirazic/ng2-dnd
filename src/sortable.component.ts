@@ -185,7 +185,7 @@ export class SortableComponent extends AbstractComponent {
             this.onDropSuccessCallback.emit(this._dragDropService.dragData);
             if (this._dragDropService.onDragSuccessCallback) {
                 // console.log('onDropCallback.onDragSuccessCallback.dragData', this._dragDropService.dragData);
-                this._dragDropService.onDragSuccessCallback.emit({dragData: this._dragDropService.dragData, dragEvent: event});
+                this._dragDropService.onDragSuccessCallback.emit({dragData: this._dragDropService.dragData, mouseEvent: event});
             }
             // Refresh changes in properties of container component
             this._sortableContainer.detectChanges();
