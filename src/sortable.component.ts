@@ -128,7 +128,7 @@ export class SortableComponent extends AbstractComponent {
         this._dragDropService.dragData = this.dragData;
         this._dragDropService.onDragSuccessCallback = this.onDragSuccessCallback;
         //
-        this.onDragStartCallback.emit(this._dragDropService.dragData);
+        this.onDragStartCallback.emit({dragData: this._dragDropService.dragData, dragEvent: event});
     }
 
     _onDragOverCallback(event: Event) {
@@ -137,7 +137,7 @@ export class SortableComponent extends AbstractComponent {
             this._sortableDataService.sortableContainer = this._sortableContainer;
             this._sortableDataService.index = this.index;
             this._sortableDataService.markSortable(this._elem);
-            this.onDragOverCallback.emit(this._dragDropService.dragData);
+            this.onDragOverCallback.emit({dragData: this._dragDropService.dragData, dragEvent: event});
         }
     }
 
@@ -152,7 +152,7 @@ export class SortableComponent extends AbstractComponent {
         this._dragDropService.dragData = null;
         this._dragDropService.onDragSuccessCallback = null;
         //
-        this.onDragEndCallback.emit(this._dragDropService.dragData);
+        this.onDragEndCallback.emit({dragData:this._dragDropService.dragData, dragEvent:event});
     }
 
     _onDragEnterCallback(event: Event) {
@@ -185,7 +185,7 @@ export class SortableComponent extends AbstractComponent {
             this.onDropSuccessCallback.emit(this._dragDropService.dragData);
             if (this._dragDropService.onDragSuccessCallback) {
                 // console.log('onDropCallback.onDragSuccessCallback.dragData', this._dragDropService.dragData);
-                this._dragDropService.onDragSuccessCallback.emit(this._dragDropService.dragData);
+                this._dragDropService.onDragSuccessCallback.emit({dragData: this._dragDropService.dragData, dragEvent: event});
             }
             // Refresh changes in properties of container component
             this._sortableContainer.detectChanges();
