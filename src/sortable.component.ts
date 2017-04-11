@@ -135,7 +135,7 @@ export class SortableComponent extends AbstractComponent {
 
     private addMarkSortable() {
         if (this.delay) {
-            setTimeout(function () {
+            setTimeout(() => {
                 this._sortableDataService.markSortable(this._elem);
             });
         } else {
@@ -148,7 +148,8 @@ export class SortableComponent extends AbstractComponent {
             // console.log('_onDragOverCallback. dragging elem with index ' + this.index);
             this._sortableDataService.sortableContainer = this._sortableContainer;
             this._sortableDataService.index = this.index;
-            this._sortableDataService.markSortable(this._elem);
+            //this._sortableDataService.markSortable(this._elem);
+            this.addMarkSortable();
             this.onDragOverCallback.emit({dragData: this._dragDropService.dragData, dragEvent: event});
         }
     }
@@ -169,7 +170,8 @@ export class SortableComponent extends AbstractComponent {
 
     _onDragEnterCallback(event: Event) {
         if (this._sortableDataService.isDragged) {
-            this._sortableDataService.markSortable(this._elem);
+            //this._sortableDataService.markSortable(this._elem);
+            this.addMarkSortable();
             if ((this.index !== this._sortableDataService.index) ||
                 (this._sortableDataService.sortableContainer.sortableData !== this._sortableContainer.sortableData)) {
                 // console.log('Component._onDragEnterCallback. drag node [' + this.index + '] over node [' + this._sortableDataService.index + ']');
