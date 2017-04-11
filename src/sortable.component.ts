@@ -66,6 +66,7 @@ export class SortableContainer extends AbstractComponent {
 export class SortableComponent extends AbstractComponent {
 
     @Input('sortableIndex') index: number;
+    @Input('classDelay') delay: boolean;
 
     @Input("dragEnabled") set draggable(value:boolean) {
         this.dragEnabled = !!value;
@@ -122,13 +123,24 @@ export class SortableComponent extends AbstractComponent {
         this._sortableDataService.isDragged = true;
         this._sortableDataService.sortableContainer = this._sortableContainer;
         this._sortableDataService.index = this.index;
-        this._sortableDataService.markSortable(this._elem);
+        //this._sortableDataService.markSortable(this._elem);
+        this.addMarkSortable();
         // Add dragData
         this._dragDropService.isDragged = true;
         this._dragDropService.dragData = this.dragData;
         this._dragDropService.onDragSuccessCallback = this.onDragSuccessCallback;
         //
         this.onDragStartCallback.emit({dragData: this._dragDropService.dragData, dragEvent: event});
+    }
+
+    private addMarkSortable() {
+        if (this.delay) {
+            setTimeout(function () {
+                this._sortableDataService.markSortable(this._elem);
+            });
+        } else {
+            this._sortableDataService.markSortable(this._elem);
+        }
     }
 
     _onDragOverCallback(event: Event) {
