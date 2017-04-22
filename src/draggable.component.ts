@@ -92,7 +92,14 @@ export class DraggableComponent extends AbstractComponent {
         this._dragDropService.dragData = this.dragData;
         this._dragDropService.onDragSuccessCallback = this.onDragSuccessCallback;
         this._elem.classList.add(this._config.onDragStartClass);
-        //
+
+        // add class to dragging element
+        // (add to original element and remove it after 20ms. The class will persist on dragging element)
+        this._elem.classList.add(this._config.onDragElClass);
+        setTimeout(() => {
+            this._elem.classList.remove(this._config.onDragElClass);
+        }, 20);
+
         this.onDragStart.emit({dragData: this.dragData, mouseEvent: event});
     }
 

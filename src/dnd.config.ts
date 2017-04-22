@@ -33,6 +33,7 @@ export class DragDropConfig {
     public onDragEnterClass: string = "dnd-drag-enter";
     public onDragOverClass: string = "dnd-drag-over";
     public onSortableDragClass: string = "dnd-sortable-drag";
+    public onDragElClass: string = "dnd-drag-el";
 
     public dragEffect: DataTransferEffect = DataTransferEffect.MOVE;
     public dropEffect: DataTransferEffect = DataTransferEffect.MOVE;
