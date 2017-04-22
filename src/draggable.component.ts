@@ -52,6 +52,16 @@ export class DraggableComponent extends AbstractComponent {
     }
 
     /**
+     * Drag element content
+     */
+    draggingElContent: string;
+    _savedContent: string;
+
+    @Input("draggingElContent") set draggingelcontent(value: string) {
+        this.draggingElContent = value;
+    }
+
+    /**
      * Here is the property dragImage you can use:
      * - The string value as url to the image
      *   <div class="panel panel-default"
@@ -93,11 +103,16 @@ export class DraggableComponent extends AbstractComponent {
         this._dragDropService.onDragSuccessCallback = this.onDragSuccessCallback;
         this._elem.classList.add(this._config.onDragStartClass);
 
-        // add class to dragging element
-        // (add to original element and remove it after 20ms. The class will persist on dragging element)
-        this._elem.classList.add(this._config.onDragElClass);
+        /*
+         * add class and content to dragging element
+         * (add to original element and remove it after 20ms. Data will persist on dragging element)
+         */
+        this._addDraggingElClass();
+        this._addDraggingElContent();
+
         setTimeout(() => {
-            this._elem.classList.remove(this._config.onDragElClass);
+            this._removeDraggingElClass();
+            this._restoreDraggingElContent();
         }, 20);
 
         this.onDragStart.emit({dragData: this.dragData, mouseEvent: event});
@@ -111,4 +126,26 @@ export class DraggableComponent extends AbstractComponent {
         //
         this.onDragEnd.emit({dragData: this.dragData, mouseEvent: event});
     }
+
+    private _addDraggingElClass() {
+        this._elem.classList.add(this._config.onDragElClass);
+    }
+
+    private _removeDraggingElClass() {
+        this._elem.classList.remove(this._config.onDragElClass);
+    }
+
+    private _addDraggingElContent() {
+        if (this.draggingElContent) {
+            this._savedContent = this._elem.innerHTML;
+            this._elem.innerHTML = this.draggingElContent;
+        }
+    }
+
+    private _restoreDraggingElContent() {
+        if (this._savedContent) {
+            this._elem.innerHTML = this._savedContent;
+        }
+    }
+
 }
