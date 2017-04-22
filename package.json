@@ -1,7 +1,7 @@
 {
   "name": "vivify-ng2-dnd",
   "description": "Angular 2 Drag-and-Drop without dependencies",
-  "version": "1.0.0-beta.2-5",
+  "version": "1.0.0-beta.2-6",
   "scripts": {
     "test": "karma start",
     "test-watch": "tsc && karma start --no-single-run --auto-watch",
