@@ -1,7 +1,7 @@
 {
-  "name": "vivify-ng2-dnd",
+  "name": "vi-ng2-dnd",
   "description": "Angular 2 Drag-and-Drop without dependencies",
-  "version": "1.0.0-beta.2-6",
+  "version": "1.0.0",
   "scripts": {
     "test": "karma start",
     "test-watch": "tsc && karma start --no-single-run --auto-watch",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dusanmirazic/ng2-dnd"
+    "url": "https://github.com/Vivify-Ideas/ng2-dnd"
   },
   "keywords": [
     "angular",
@@ -25,12 +25,12 @@
   "author": "Sergey Akopkokhyants <akserg@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dusanmirazic/ng2-dnd/issues"
+    "url": "https://github.com/Vivify-Ideas/ng2-dnd/issues"
   },
   "main": "bundles/index.umd.js",
   "module": "index.js",
   "typings": "index.d.ts",
-  "homepage": "https://github.com/dusanmirazic/ng2-dnd#readme",
+  "homepage": "https://github.com/Vivify-Ideas/ng2-dnd#readme",
   "peerDependencies": {
     "@angular/core": "^2.4.4"
   },
